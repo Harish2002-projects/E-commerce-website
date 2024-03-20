@@ -1,6 +1,8 @@
-import { cart } from '../data/cart.js';
+import {cart,displaycartquantity} from '../data/cart.js';
 import { products } from '../data/products.js';
+
 let productshtml= '';
+
 products.forEach((product)=> {
   productshtml += `
     <div class="product-container">
@@ -53,49 +55,41 @@ products.forEach((product)=> {
   </div>`;
 });
 
-
 document.querySelector('.js-products-grid').innerHTML= productshtml;
 
 let addedtimeoutid = {};
 document.querySelectorAll('.js-add-but').forEach((button)=> {
   button.addEventListener('click',() => {
     const productId = button.dataset.productId;
-    document.querySelector(`.js-addtocart-${productId}`).classList.add(`js-addedtocart`);
-    if(addedtimeoutid[productId])
-    {
-      clearTimeout(addedtimeoutid[productId]);
-    }
-    const timeoutid = setTimeout(()=>{
-      document.querySelector(`.js-addtocart-${productId}`).classList.remove('js-addedtocart');
-    },2000);
-    addedtimeoutid[productId] = timeoutid;
-    let matchingitem;
-    cart.forEach((item) => {
-      if(productId === item.productId)
-      {
-        matchingitem = item;
-      }
-    });
-    if(matchingitem)
-    {
-      matchingitem.quantity+= Number(document.querySelector(`.js-select-${productId}`).value);
-      console.log(document.querySelector(`.js-select-${productId}`).value);
-    }
-    else
-    {
-      const quantity = Number(document.querySelector(`.js-select-${productId}`).value);
-      cart.push({
-        productId,
-        quantity
-      });
-    }
-    let cartQuantity = 0;
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
-    });
-    document.querySelector('.js-cart-quantity').innerHTML= cartQuantity;
+    addedtocartmsg(productId);
+    displaycartquantity(productId);
+    updatecartquantity();
   });
 });
+
+function addedtocartmsg(productId)
+{
+  document.querySelector(`.js-addtocart-${productId}`).classList.add(`js-addedtocart`);
+  if(addedtimeoutid[productId])
+  {
+    clearTimeout(addedtimeoutid[productId]);
+  }
+  const timeoutid = setTimeout(()=>{
+    document.querySelector(`.js-addtocart-${productId}`).classList.remove('js-addedtocart');
+  },2000);
+  addedtimeoutid[productId] = timeoutid;
+}
+
+function updatecartquantity()
+{
+  let cartQuantity = 0;
+  cart.forEach((cartitem) => {
+    cartQuantity += cartitem.quantity;
+  });
+  document.querySelector('.js-cart-quantity').innerHTML= cartQuantity;
+}
+
+
 
 
 
