@@ -59,5 +59,9 @@ export function updatecartquantity()
   cart.forEach((cartitem) => {
     cartQuantity += cartitem.quantity;
   });
+  if(cartQuantity === 0)
+  {
+    cartQuantity = '';
+  }
   document.querySelector('.js-cart-quantity').innerHTML= cartQuantity;
 }
