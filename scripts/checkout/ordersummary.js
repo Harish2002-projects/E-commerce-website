@@ -16,7 +16,7 @@ export function renderordersummary()
     const today = dayjs();
     const delidate = today.add(deliveryoption.deliverydays, 'days');
     const delistring = delidate.format('dddd, MMMM D');
-
+  
     cartSummaryHTML += `
       <div class="cart-item-container
         js-cart-item-container-${matchingProduct.id}">
@@ -85,6 +85,7 @@ export function renderordersummary()
       </div>
       `;
     });
+    displaycartcount();
     return html;
   }
 
@@ -101,6 +102,7 @@ export function renderordersummary()
       );
       container.remove();
       renderpaymentsummary();
+      displaycartcount();
     });
   });
   document.querySelectorAll('.js-delivery-option').forEach((element)=>{
@@ -110,6 +112,15 @@ export function renderordersummary()
       updatetocart(productId,deliveryoptionid);
       renderordersummary();
       renderpaymentsummary();
+      displaycartcount();
     });
   });
+}
+function displaycartcount()
+{
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+  document.querySelector('.js-cart-quantity-top').innerHTML= cartQuantity + ' Items';
 }
