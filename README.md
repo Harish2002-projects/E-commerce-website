@@ -14,14 +14,14 @@ This is an Amazon clone website built with HTML, CSS, and JavaScript. It include
 ![Screenshot 2024-05-11 194641](https://github.com/Harish2002-projects/E-commerce-website/assets/123865573/81c8baa6-64ed-4aaf-b006-6c2b3cc05801)
 
 
-- Track Order Page: Enables users to track the status of their orders by entering their order ID.
+- Track Order Page: Enables users to track the status of their orders.
 
 ![Screenshot 2024-05-11 194654](https://github.com/Harish2002-projects/E-commerce-website/assets/123865573/51083ca9-e9d0-473d-98b8-ccbe20f321f8)
 
 
 ## Usage
 
-To use the website, simply open the `index.html` file in your web browser. You will be directed to the main page where you can browse and select products. Clicking on a product will add it to your cart. You can then navigate to the cart page to view your selected items, update quantities, or remove items. The track order page allows you to check the status of your orders by entering the order ID.
+To use the website, simply clone the repo into local system and open the `index.html` file. You will be directed to the main page where you can browse and select products. Clicking on a product will add it to your cart. You can then navigate to the cart page to view your selected items, update quantities, or remove items. The track order page allows you to check the status of your orders.
 
 ## Technologies Used
 
