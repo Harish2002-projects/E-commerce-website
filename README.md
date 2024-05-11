@@ -4,12 +4,12 @@ This is an Amazon clone website built with HTML, CSS, and JavaScript. It include
 
 ## Features
 
-- Main Page: Displays a list of products available for purchase.
+- Main Page: Displays a list of products available for purchase. Click on add to cart to add the item to cart. the quantity of the item can be adjusted as per users wish
 
 ![Screenshot 2024-05-11 194601](https://github.com/Harish2002-projects/E-commerce-website/assets/123865573/621a1da0-293f-4746-806c-e81b7249a110)
 
   
-- Cart Page: Shows the items currently in the user's cart and provides options to update or remove them.
+- Cart Page: Shows the items currently in the user's cart and provides options to update or remove them. the cart page also gives the user freedom to choose the one of the 3 available delivery options. 
 
 ![Screenshot 2024-05-11 194641](https://github.com/Harish2002-projects/E-commerce-website/assets/123865573/81c8baa6-64ed-4aaf-b006-6c2b3cc05801)
 
