@@ -28,6 +28,22 @@ To use the website, simply clone the repo into local system and open the `index.
 - HTML
 - CSS
 - JavaScript
+  
+## Api Used
+
+SuperSimpleBackend API serves as the backend infrastructure for an Amazon clone project, facilitating crucial functionalities like product retrieval and order management. By accessing the /products endpoint, users can retrieve a comprehensive list of available products. Each product entry includes essential details such as its unique identifier, name, price, and description. Additionally, the API allows users to create orders by submitting cart objects via the /orders endpoint. Upon successful submission, the API generates an order ID along with relevant timestamps and detailed product information. here are some places where this api has been used in the project:
+
+1. To recieve a product list from the api
+   
+![image](https://github.com/Harish2002-projects/E-commerce-website/assets/123865573/745bc863-7020-403a-a9bd-50f694fcf6fe)
+
+2. To create an order by passing in the current cart
+
+![image](https://github.com/Harish2002-projects/E-commerce-website/assets/123865573/3170b29a-d418-4cd2-9b48-0d179ab5b31e)
+
+## Api Documentation
+
+https://supersimplebackend.dev/documentation
 
 ## Dependencies
 
