@@ -61,11 +61,7 @@ async function loadPage() {
             <div class="product-quantity">
               Quantity: ${productDetails.quantity}
             </div>
-            <button class="buy-again-button button-primary js-buy-again"
-            data-product-id="${product.id}">
-              <img class="buy-again-icon" src="images/icons/buy-again.png">
-              <span class="buy-again-message">Buy it again</span>
-            </button>
+            
           </div>
           <div class="product-actions">
             <a href="tracking.html?orderId=${order.id}&productId=${product.id}">
@@ -84,20 +80,6 @@ async function loadPage() {
   }
 
   document.querySelector(".js-orders-grid").innerHTML = ordersHTML;
-  document.querySelectorAll(".js-buy-again").forEach((button) => {
-    button.addEventListener("click", () => {
-      addToCart(button.dataset.productId);
-
-      button.innerHTML = "Added";
-      setTimeout(() => {
-        button.innerHTML = `
-          <img class="buy-again-icon" src="images/icons/buy-again.png">
-          <span class="buy-again-message">Buy it again</span>
-        `;
-      }, 1000);
-    });
-  });
 }
 
 loadPage();
-console.log(orders);
