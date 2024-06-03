@@ -2,6 +2,7 @@ import { getProduct, loadProductsFetch } from "../data/products.js";
 import { orders } from "../data/orderdata.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import formatCurrency from "./utils/money.js";
+import { addToCart } from "../data/cart.js";
 
 async function loadPage() {
   await loadProductsFetch();
@@ -39,44 +40,63 @@ async function loadPage() {
   function productsListHTML(order) {
     let productsListHTML = "";
 
-    order.products.forEach((productDetails) => {
-      const product = getProduct(productDetails.productId);
+    // Check if order.products is defined and is an array
+    if (order.products && Array.isArray(order.products)) {
+      order.products.forEach((productDetails) => {
+        const product = getProduct(productDetails.productId);
 
-      productsListHTML += `
-        <div class="product-image-container">
-          <img src="${product.image}">
-        </div>
-        <div class="product-details">
-          <div class="product-name">
-            ${product.name}
+        productsListHTML += `
+          <div class="product-image-container">
+            <img src="${product.image}">
           </div>
-          <div class="product-delivery-date">
-            Arriving on: ${dayjs(productDetails.estimatedDeliveryTime).format(
-              "MMMM D"
-            )}
-          </div>
-          <div class="product-quantity">
-            Quantity: ${productDetails.quantity}
-          </div>
-          <button class="buy-again-button button-primary">
-            <img class="buy-again-icon" src="images/icons/buy-again.png">
-            <span class="buy-again-message">Buy it again</span>
-          </button>
-        </div>
-        <div class="product-actions">
-          <a href="tracking.html?orderId=${order.id}&productId=${product.id}">
-            <button class="track-package-button button-secondary">
-              Track package
+          <div class="product-details">
+            <div class="product-name">
+              ${product.name}
+            </div>
+            <div class="product-delivery-date">
+              Arriving on: ${dayjs(productDetails.estimatedDeliveryTime).format(
+                "MMMM D"
+              )}
+            </div>
+            <div class="product-quantity">
+              Quantity: ${productDetails.quantity}
+            </div>
+            <button class="buy-again-button button-primary js-buy-again"
+            data-product-id="${product.id}">
+              <img class="buy-again-icon" src="images/icons/buy-again.png">
+              <span class="buy-again-message">Buy it again</span>
             </button>
-          </a>
-        </div>
-      `;
-    });
+          </div>
+          <div class="product-actions">
+            <a href="tracking.html?orderId=${order.id}&productId=${product.id}">
+              <button class="track-package-button button-secondary">
+                Track package
+              </button>
+            </a>
+          </div>
+        `;
+      });
+    } else {
+      productsListHTML = "<p>No products found.</p>";
+    }
 
     return productsListHTML;
   }
 
   document.querySelector(".js-orders-grid").innerHTML = ordersHTML;
+  document.querySelectorAll(".js-buy-again").forEach((button) => {
+    button.addEventListener("click", () => {
+      addToCart(button.dataset.productId);
+
+      button.innerHTML = "Added";
+      setTimeout(() => {
+        button.innerHTML = `
+          <img class="buy-again-icon" src="images/icons/buy-again.png">
+          <span class="buy-again-message">Buy it again</span>
+        `;
+      }, 1000);
+    });
+  });
 }
 
 loadPage();
